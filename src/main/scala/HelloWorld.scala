@@ -1,6 +1,5 @@
-object HelloWorld {
-  def main (args: Array[String]) {
-    println("Hello, Daj sie poznac!")
-
+class HelloWorld {
+  def helloWorld() : String = {
+    "Hello, Daj sie poznac!"
   }
 }
