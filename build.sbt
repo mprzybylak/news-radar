@@ -9,3 +9,5 @@ lazy val root = (project in file("."))
   .dependsOn(backend)
 
 lazy val backend = project in file("backend")
+
+lazy val infrastructure = project in file("infrastructure")
