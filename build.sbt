@@ -1,13 +1,35 @@
-lazy val root = (project in file("."))
+lazy val slick = "com.typesafe.slick" %% "slick" % "3.1.0"
+lazy val slf4jnop = "org.slf4j" % "slf4j-nop" % "1.6.4"
+lazy val sclikhikaricp = "com.typesafe.slick" %% "slick-hikaricp" % "3.2.0"
+lazy val h2driver = "com.h2database" % "h2" % "1.4.177"
+lazy val scalaTest = "org.scalatest" %% "scalatest" % "3.0.1" % "test"
+
+lazy val commonSettings  = Seq(
+  scalaVersion := "2.11.7"
+)
+
+lazy val backend = (project in file("backend"))
   .settings(
-    name := "news-radar",
+    commonSettings,
+    name := "news-radar-backend",
     version := "1.0",
-    scalaVersion := "2.11.7"
+    libraryDependencies += scalaTest
   )
-  .enablePlugins(PlayScala)
+
+lazy val infrastructure = (project in file("infrastructure"))
+  .settings(
+    commonSettings,
+    name := "news-radar-infrastructure",
+    version := "1.0",
+    libraryDependencies ++= Seq(slick, slf4jnop, sclikhikaricp, h2driver)
+  )
   .aggregate(backend)
   .dependsOn(backend)
 
-lazy val backend = project in file("backend")
-
-lazy val infrastructure = project in file("infrastructure")
+lazy val root = (project in file("."))
+  .settings(
+    commonSettings,
+    name := "news-radar",
+    version := "1.0"
+  )
+  .enablePlugins(PlayScala)
