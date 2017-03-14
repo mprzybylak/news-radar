@@ -1,0 +1,107 @@
+@(message: String)
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>News Radar</title>
+
+    <link rel="stylesheet" href='@routes.Assets.at("bootstrap/css/bootstrap.css")'>
+
+    <script type="text/javascript" src='@routes.Assets.at("jquery/jquery-3.1.1.min.js")'></script>
+    <script type="text/javascript" src='@routes.Assets.at("bootstrap/js/bootstrap.js")'></script>
+    <script type="text/javascript" src='@routes.FeedListController.feedJavascriptControllers()'></script>
+</head>
+
+<body>
+<div class="container" role="main">
+    <h1>News Radar</h1>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    Feed list
+                </div>
+
+                <div class="panel-body">
+
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse1">Dodaj źródło</a>
+                                </h4>
+                            </div>
+                            <div id="collapse1" class="panel-collapse collapse">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="feedName">Nazwa źródła</label>
+                                        <input type="text" class="form-control" id="feedName" name="feedName" placeholder="Wprowadź nazwę">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="feedAddress">Adres źródła</label>
+                                        <input type="text" class="form-control" id="feedAddress" name="feedAdress" placeholder="Wprowadź adres">
+                                    </div>
+                                    <button type="button" id="addFeed" class="btn btn-primary">Dodaj</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>Nazwa źródła</th>
+                                    <th>Adress źródła</th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="col-md-4"></div>
+
+        <div class="col-md-4"></div>
+    </div>
+
+
+</div>
+
+
+
+
+</body>
+
+<script>
+    $(document).ready(function(){
+        $('#addFeed').click(function(){
+
+            var feedName = $('#feedName').val();
+            var feedAddress = $('#feedAddress').val();
+
+            var data = {
+                "feedName" : feedName,
+                "feedAddress" : feedAddress
+            }
+
+            $.ajax({
+                url: "@routes.FeedListController.add",
+                type : 'POST',
+                data : JSON.stringify(data),
+                contentType : 'application/json'
+            });
+        }
+        );
+    });
+</script>
+
+</html>

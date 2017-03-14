@@ -8,6 +8,7 @@ lazy val commonSettings  = Seq(
   scalaVersion := "2.11.7"
 )
 
+
 lazy val backend = (project in file("backend"))
   .settings(
     commonSettings,
@@ -26,6 +27,16 @@ lazy val infrastructure = (project in file("infrastructure"))
   .aggregate(backend)
   .dependsOn(backend)
 
+lazy val gui = (project in file("gui"))
+  .settings(
+    commonSettings,
+    name := "news-radar-gui",
+    version := "1.0"
+  )
+  .enablePlugins(PlayScala)
+  .dependsOn(backend)
+  .aggregate(backend)
+
 lazy val root = (project in file("."))
   .settings(
     commonSettings,
@@ -33,3 +44,5 @@ lazy val root = (project in file("."))
     version := "1.0"
   )
   .enablePlugins(PlayScala)
+  .dependsOn(gui, backend, infrastructure)
+  .aggregate(gui, backend, infrastructure)
