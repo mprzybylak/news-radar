@@ -1,13 +1,13 @@
 package controllers
 
-import com.newsreader.feeds.application.impl.FeedServiceImpl
+import javax.inject.Inject
+
+import com.newsreader.feeds.application.api.FeedService
 import play.api.mvc._
 import play.api.routing.JavaScriptReverseRouter
 
 
-class FeedListController extends Controller {
-
-  lazy val service = new FeedServiceImpl
+class FeedListController @Inject() (service:FeedService) extends Controller {
 
   def index = Action {
     Ok(views.html.index(""))
@@ -26,6 +26,7 @@ class FeedListController extends Controller {
     val jsonName = json.map(json => (json \ "feedName").as[String]).get
     val jsonAddress = json.map(json => (json \ "feedAddress").as[String]).get
     service.storeFeed(jsonName, jsonAddress)
+    println(json)
     Ok("ok");
   }
 

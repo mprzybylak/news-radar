@@ -39,6 +39,7 @@ class FeedDbDao extends FeedDao{
   override def store(feed: Feed): Unit = {
     // TODO allow to return Future
     Await.result(db.run(table += feed), Duration.Inf)
+    println("stored!")
   }
 }
 

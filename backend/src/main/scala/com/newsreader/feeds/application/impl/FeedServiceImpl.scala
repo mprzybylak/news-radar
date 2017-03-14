@@ -1,10 +1,13 @@
 package com.newsreader.feeds.application.impl
 
 import com.newsreader.feeds.application.api.FeedService
+import com.newsreader.feeds.domain.{Feed, FeedDao}
+import javax.inject.Inject
 
-class FeedServiceImpl extends FeedService {
+class FeedServiceImpl @Inject() (dao:FeedDao) extends FeedService {
 
   override def storeFeed(name: String, address: String): Unit = {
+    dao.store(new Feed(0, name, address))
   }
 }
 
