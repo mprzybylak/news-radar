@@ -28,9 +28,12 @@ class FeedDbDao extends FeedDao{
     db.run(MTable.getTables).flatMap(
       v => {
         val names = v.map(m => m.name.name)
+        println(names)
         val create = Seq(table).filter(
-          t => !names.contains(t.baseTableRow.name)
+          t => !names.contains(t.baseTableRow.tableName)
         ).map(_.schema.create)
+
+
         db.run(DBIO.sequence(create))
       }
     ), Duration.Inf)
