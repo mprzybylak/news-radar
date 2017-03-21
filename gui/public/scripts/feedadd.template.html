@@ -1,0 +1,11 @@
+<form>
+    <div class="form-group">
+        <label for="feedName">Nazwa źródła</label>
+        <input type="text" class="form-control" id="feedName" name="feedName" placeholder="Wprowadź nazwę" ng-model="feed.feedName">
+    </div>
+    <div class="form-group">
+        <label for="feedAddress">Adres źródła</label>
+        <input type="text" class="form-control" id="feedAddress" name="feedAdress" placeholder="Wprowadź adres" ng-model="feed.feedAddress">
+    </div>
+    <button type="button" id="addFeed" class="btn btn-primary" ng-click="$ctrl.addFeed(feed)">Dodaj</button>
+</form>

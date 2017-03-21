@@ -3,5 +3,6 @@ GET     /                       controllers.FeedListController.index
 GET     /javascriptRoutes       controllers.FeedListController.feedJavascriptControllers
 
 POST    /feed                   controllers.FeedListController.add
+GET     /load                   controllers.FeedListController.load
 
-GET     /assets/*file           controllers.Assets.at(path="/public/lib/news-radar-gui", file)
+GET     /assets/*file           controllers.Assets.at(path="/public/lib", file)

@@ -5,6 +5,8 @@ lazy val h2driver = "com.h2database" % "h2" % "1.4.177"
 lazy val scalaTest = "org.scalatest" %% "scalatest" % "3.0.1" % "test"
 lazy val javaxInject = "javax.inject" % "javax.inject" % "1"
 
+lazy val angularJs = "org.webjars" % "angularjs" % "1.6.2"
+
 lazy val commonSettings  = Seq(
   scalaVersion := "2.11.7"
 )
@@ -32,7 +34,8 @@ lazy val gui = (project in file("gui"))
     commonSettings,
     name := "news-radar-gui",
     version := "1.0",
-    routesGenerator := InjectedRoutesGenerator
+    routesGenerator := InjectedRoutesGenerator,
+    libraryDependencies ++= Seq(angularJs)
   )
   .enablePlugins(PlayScala)
   .dependsOn(backend)

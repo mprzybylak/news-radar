@@ -1,0 +1,12 @@
+<table id="feedsTable" class="table table-striped">
+    <tr>
+        <th>Feed Name</th>
+        <th>Feed Source</th>
+    </tr>
+    <tr ng-repeat="feed in $ctrl.feeds">
+        <td>{{feed.name}}</td>
+        <td>{{feed.address}}</td>
+    </tr>
+</table>
+
+

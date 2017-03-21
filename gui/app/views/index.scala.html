@@ -1,6 +1,6 @@
 @(message: String)
-
-<html>
+<!doctype html>
+<html lang="en" ng-app="newsRadar">
 
 <head>
     <meta charset="utf-8">
@@ -9,11 +9,18 @@
 
     <title>News Radar</title>
 
-    <link rel="stylesheet" href='@routes.Assets.at("bootstrap/css/bootstrap.css")'>
+    <link rel="stylesheet" href='@routes.Assets.at("news-radar-gui/bootstrap/css/bootstrap.css")'>
 
-    <script type="text/javascript" src='@routes.Assets.at("jquery/jquery-3.1.1.min.js")'></script>
-    <script type="text/javascript" src='@routes.Assets.at("bootstrap/js/bootstrap.js")'></script>
+    <script type="text/javascript" src='@routes.Assets.at("news-radar-gui/jquery/jquery-3.1.1.min.js")'></script>
+    <script type="text/javascript" src='@routes.Assets.at("news-radar-gui/bootstrap/js/bootstrap.js")'></script>
     <script type="text/javascript" src='@routes.FeedListController.feedJavascriptControllers()'></script>
+
+
+    <script type="text/javascript" src='@routes.Assets.at("angularjs/angular.js")'></script>
+    <script type="text/javascript" src='@routes.Assets.at("news-radar-gui/scripts/feed.js")'></script>
+    <script type="text/javascript" src='@routes.Assets.at("news-radar-gui/scripts/feedlist.component.js")'></script>
+    <script type="text/javascript" src='@routes.Assets.at("news-radar-gui/scripts/feedadd.component.js")'></script>
+
 </head>
 
 <body>
@@ -37,71 +44,22 @@
                                 </h4>
                             </div>
                             <div id="collapse1" class="panel-collapse collapse">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="feedName">Nazwa źródła</label>
-                                        <input type="text" class="form-control" id="feedName" name="feedName" placeholder="Wprowadź nazwę">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="feedAddress">Adres źródła</label>
-                                        <input type="text" class="form-control" id="feedAddress" name="feedAdress" placeholder="Wprowadź adres">
-                                    </div>
-                                    <button type="button" id="addFeed" class="btn btn-primary">Dodaj</button>
-                                </form>
+                                <feed-add></feed-add>
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-striped">
-                                <tr>
-                                    <th>Nazwa źródła</th>
-                                    <th>Adress źródła</th>
-                                </tr>
-                            </table>
+                            <feed-list></feed-list>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
-
-        <div class="col-md-4"></div>
-
-        <div class="col-md-4"></div>
     </div>
-
-
 </div>
 
-
-
-
 </body>
-
-<script>
-    $(document).ready(function(){
-        $('#addFeed').click(function(){
-
-            var feedName = $('#feedName').val();
-            var feedAddress = $('#feedAddress').val();
-
-            var data = {
-                "feedName" : feedName,
-                "feedAddress" : feedAddress
-            }
-
-            $.ajax({
-                url: "@routes.FeedListController.add",
-                type : 'POST',
-                data : JSON.stringify(data),
-                contentType : 'application/json'
-            });
-        }
-        );
-    });
-</script>
 
 </html>
