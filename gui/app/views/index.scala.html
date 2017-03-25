@@ -9,55 +9,38 @@
 
     <title>News Radar</title>
 
-    <link rel="stylesheet" href='@routes.Assets.at("news-radar-gui/bootstrap/css/bootstrap.css")'>
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700'/>
+    <link rel='stylesheet' href='@routes.Assets.at("angular-material/angular-material.css")'/>
 
-    <script type="text/javascript" src='@routes.Assets.at("news-radar-gui/bootstrap/js/bootstrap.js")'></script>
     <script type="text/javascript" src='@routes.FeedListController.feedJavascriptControllers()'></script>
 
-
     <script type="text/javascript" src='@routes.Assets.at("angularjs/angular.js")'></script>
+    <script type="text/javascript" src='@routes.Assets.at("angular-material/angular-material.min.js")'></script>
+    <script type="text/javascript" src='@routes.Assets.at("angularjs/angular-animate.min.js")'></script>
+    <script type="text/javascript" src='@routes.Assets.at("angularjs/angular-aria.min.js")'></script>
+    <script type="text/javascript" src='@routes.Assets.at("angularjs/angular-messages.js")'></script>
     <script type="text/javascript" src='@routes.Assets.at("news-radar-gui/scripts/feed.js")'></script>
     <script type="text/javascript" src='@routes.Assets.at("news-radar-gui/scripts/feedlist.component.js")'></script>
     <script type="text/javascript" src='@routes.Assets.at("news-radar-gui/scripts/feedadd.component.js")'></script>
 
 </head>
 
-<body>
-<div class="container" role="main">
-    <h1>News Radar</h1>
+<body ng-cloak layout="column">
 
-    <div class="row">
-        <div class="col-md-4">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    Feed list
-                </div>
+    <md-toolbar layout="row" class="md-toolbar-tools">
+        <h1>News Radar</h1>
+    </md-toolbar>
 
-                <div class="panel-body">
-
-                    <div class="panel-group">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" href="#collapse1">Dodaj źródło</a>
-                                </h4>
-                            </div>
-                            <div id="collapse1" class="panel-collapse collapse">
-                                <feed-add></feed-add>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <feed-list></feed-list>
-                        </div>
-                    </div>
-                </div>
+    <md-content flex id="content" >
+        <div layout="column" flex="35" layout-padding>
+            <div>
+                <feed-add></feed-add>
+            </div>
+            <div>
+                <feed-list></feed-list>
             </div>
         </div>
-    </div>
-</div>
+    </md-content>
 
 </body>
 

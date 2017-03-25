@@ -1,1 +1,1 @@
-var newsRadar = angular.module('newsRadar', []);
+var newsRadar = angular.module('newsRadar', ['ngMaterial']);

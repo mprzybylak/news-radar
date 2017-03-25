@@ -1,12 +1,12 @@
-<table id="feedsTable" class="table table-striped">
-    <tr>
-        <th>Feed Name</th>
-        <th>Feed Source</th>
-    </tr>
-    <tr ng-repeat="feed in $ctrl.feeds">
-        <td>{{feed.name}}</td>
-        <td>{{feed.address}}</td>
-    </tr>
-</table>
-
+<div md-whiteframe="3" layout-padding>
+    <h2>Feed List</h2>
+    <md-list flex>
+        <md-list-item class="md-2-line" ng-repeat="feed in $ctrl.feeds">
+            <div class="md-list-item-text" layout="column">
+                <h3>{{feed.name}}</h3>
+                <p>{{feed.address}}</p>
+            </div>
+        </md-list-item>
+    </md-list>
+</div>
 
