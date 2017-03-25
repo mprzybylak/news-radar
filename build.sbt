@@ -25,10 +25,20 @@ lazy val infrastructure = (project in file("infrastructure"))
     commonSettings,
     name := "news-radar-infrastructure",
     version := "1.0",
-    libraryDependencies ++= Seq(slick, slf4jnop, sclikhikaricp, h2driver)
+    libraryDependencies ++= Seq(slick, slf4jnop, sclikhikaricp)
   )
   .aggregate(backend)
   .dependsOn(backend)
+
+lazy val daoh2 = (project in file("dao-h2"))
+  .settings(
+    commonSettings,
+    name := "news-radard-dao-h2",
+    version := "1.0",
+    libraryDependencies ++= Seq(slick, slf4jnop, sclikhikaricp, h2driver)
+  )
+  .aggregate(infrastructure)
+  .dependsOn(infrastructure)
 
 lazy val gui = (project in file("gui"))
   .settings(
@@ -49,5 +59,5 @@ lazy val root = (project in file("."))
     version := "1.0"
   )
   .enablePlugins(PlayScala)
-  .dependsOn(gui, backend, infrastructure)
-  .aggregate(gui, backend, infrastructure)
+  .dependsOn(gui, backend, infrastructure, daoh2)
+  .aggregate(gui, backend, infrastructure, daoh2)
